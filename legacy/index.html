@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="Landing modular premium para profesionales independientes con rendimiento extremo y conversion B2B."
+    />
+    <title>Landing Modular B2B</title>
+    <link
+      rel="preload"
+      href="assets/fonts/fraunces-700.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="assets/fonts/manrope-600.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-profession="corredor-inmobiliario">
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+
+    <header class="top-nav">
+      <div class="brand">
+        <span class="brand-mark">LM</span>
+        <span class="brand-text">Landing Modular</span>
+      </div>
+      <nav class="profession-nav" aria-label="Selector de profesiones">
+        <button class="profession-chip" data-profession="abogado" type="button">
+          Abogado
+        </button>
+        <button class="profession-chip" data-profession="electricista" type="button">
+          Electricista
+        </button>
+        <button class="profession-chip is-active" data-profession="mecanico" type="button">
+          Mecánico
+        </button>
+        <button class="profession-chip" data-profession="plomero" type="button">
+          Plomero
+        </button>
+        <button class="profession-chip" data-profession="psicologo" type="button">
+          Psicologo
+        </button>
+        <button class="profession-chip" data-profession="economista" type="button">
+          Economista
+        </button>
+        <button class="profession-chip" data-profession="contador" type="button">
+          Contador
+        </button>
+        <button
+          class="profession-chip"
+          data-profession="corredor-inmobiliario"
+          type="button"
+        >
+          Corredor Inmobiliario
+        </button>
+        <button class="profession-chip" data-profession="asistente-virtual" type="button">
+          Asistente Virtual
+        </button>
+        <button class="profession-chip" data-profession="entrenador-personal" type="button">
+          Entrenador Personal
+        </button>
+        <button class="profession-chip" data-profession="nutricionista" type="button">
+          Nutricionista
+        </button>
+        <button class="profession-chip" data-profession="arquitecto" type="button">
+          Arquitecto
+        </button>
+        <button
+          class="profession-chip"
+          data-profession="consultor-marketing"
+          type="button"
+        >
+          Consultor de Marketing
+        </button>
+      </nav>
+    </header>
+
+    <main id="main">
+      <div class="layout-root" id="layout-root" aria-live="polite"></div>
+
+      <section class="disruptive" id="disruptive">
+        <div>
+          <h2 data-text="disruptive.title">
+            Su profesion no esta en la lista?
+          </h2>
+          <p data-text="disruptive.copy">
+            La incorporamos con una experiencia hiper personal. Escribenos y
+            definimos una propuesta unica.
+          </p>
+        </div>
+        <a href="#contacto" data-text="disruptive.cta">
+          Pedir personalizacion
+        </a>
+      </section>
+
+      <section class="lead-form" id="contacto">
+        <div class="form-header">
+          <h2 data-text="form.title">Solicitá tu propuesta ahora.</h2>
+          <p data-text="form.subtitle">
+            Completá estos 3 datos y recibí una respuesta en menos de 24hs.
+          </p>
+        </div>
+        <form class="form-grid" id="main-contact-form" action="#" method="post">
+          <div class="form-field">
+            <input name="nombre" id="form-name" type="text" placeholder="Nombre completo" autocomplete="name" required />
+          </div>
+          <div class="form-field">
+            <input name="contacto" id="form-contact" type="text" placeholder="WhatsApp o Email" required />
+          </div>
+          <div class="form-field">
+            <select name="servicio" id="form-service" required aria-label="Seleccionar servicio">
+              <option value="" disabled selected>Servicio de interés</option>
+              <option value="abogado">Abogado</option>
+              <option value="electricista">Electricista</option>
+              <option value="mecanico">Mecánico</option>
+              <option value="plomero">Plomero</option>
+              <option value="psicologo">Psicólogo</option>
+              <option value="economista">Economista</option>
+              <option value="contador">Contador</option>
+              <option value="corredor-inmobiliario">Corredor Inmobiliario</option>
+              <option value="asistente-virtual">Asistente Virtual</option>
+              <option value="entrenador-personal">Entrenador Personal</option>
+              <option value="nutricionista">Nutricionista</option>
+              <option value="arquitecto">Arquitecto</option>
+              <option value="consultor-marketing">Consultor de Marketing</option>
+            </select>
+          </div>
+          <button class="cta primary hero-cta" type="submit" data-text="form.button">
+            Solicitar propuesta gratuita
+          </button>
+        </form>
+      </section>
+    </main>
+
+    <template id="layout-abogado">
+      <section class="hero hero--split">
+        <div class="hero-content">
+          <p class="eyebrow" data-text="hero.eyebrow"></p>
+          <h1 data-text="hero.title"></h1>
+          <p class="hero-subtitle" data-text="hero.subtitle"></p>
+          <div class="hero-ctas">
+            <a class="cta primary" href="#contacto" data-text="form.button">
+              Solicitar propuesta
+            </a>
+          </div>
+          <div class="hero-proof" data-list="hero.proof"></div>
+        </div>
+        <div class="hero-media">
+          <div class="photo-frame" data-image="profile" data-loading="eager"></div>
+          <div class="mini-card-grid" data-cards="differentials" data-card-class="mini-card"></div>
+          <div class="hero-svg" data-hero-svg></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 data-text="sections.timeline.title"></h2>
+          <p data-text="sections.timeline.subtitle"></p>
+        </div>
+        <div class="timeline" data-steps="workflow.steps" data-step-class="timeline-step"></div>
+      </section>
+
+      <section class="section" data-workflow data-flow="zigzag" data-steps="workflow.steps">
+        <div class="section-header">
+          <h2 data-text="workflow.title"></h2>
+          <p data-text="workflow.subtitle"></p>
+        </div>
+        <div class="workflow-grid">
+          <div class="workflow-svg" data-workflow-svg></div>
+          <div class="workflow-steps" data-steps="workflow.steps"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 data-text="sections.proof.title"></h2>
+          <p data-text="sections.proof.subtitle"></p>
+        </div>
+        <div class="stat-grid" data-stats="stats"></div>
+      </section>
+
+      <section class="section">
+        <blockquote class="quote" data-quote="quote"></blockquote>
+      </section>
+    </template>
+
+    <template id="layout-electricista">
+      <section class="hero hero--stack">
+        <div class="hero-content">
+          <p class="eyebrow" data-text="hero.eyebrow"></p>
+          <h1 data-text="hero.title"></h1>
+          <p class="hero-subtitle" data-text="hero.subtitle"></p>
+          <div class="hero-ctas">
+            <a class="cta primary" href="#contacto" data-text="form.button">
+              Solicitar propuesta
+            </a>
+          </div>
+          <div class="hero-proof" data-list="hero.proof"></div>
+        </div>
+        <div class="hero-media hero-media--wide">
+          <div class="photo-frame" data-image="context" data-loading="eager"></div>
+          <div class="tag-row" data-tags="signals"></div>
+          <div class="hero-svg" data-hero-svg></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 data-text="sections.diff.title"></h2>
+          <p data-text="sections.diff.subtitle"></p>
+        </div>
+        <div class="card-grid" data-cards="differentials"></div>
+      </section>
+
+      <section class="section" data-workflow data-flow="linear" data-steps="workflow.steps">
+        <div class="section-header">
+          <h2 data-text="workflow.title"></h2>
+          <p data-text="workflow.subtitle"></p>
+        </div>
+        <div class="workflow-grid">
+          <div class="workflow-svg" data-workflow-svg></div>
+          <div class="workflow-steps" data-steps="workflow.steps"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 data-text="sections.proof.title"></h2>
+          <p data-text="sections.proof.subtitle"></p>
+        </div>
+        <div class="stat-grid" data-stats="stats"></div>
+      </section>
+    </template>
+
+    <template id="layout-plomero">
+      <section class="hero hero--split">
+        <div class="hero-content">
+          <p class="eyebrow" data-text="hero.eyebrow"></p>
+          <h1 data-text="hero.title"></h1>
+          <p class="hero-subtitle" data-text="hero.subtitle"></p>
+          <div class="hero-ctas">
+            <a class="cta primary" href="#contacto" data-text="form.button">
+              Solicitar propuesta
+            </a>
+          </div>
+          <div class="hero-proof" data-list="hero.proof"></div>
+        </div>
+        <div class="hero-media">
+          <div class="photo-frame" data-image="profile" data-loading="eager"></div>
+          <div class="alert-card" data-text="sections.alert"></div>
+          <div class="hero-svg" data-hero-svg></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 data-text="sections.steps.title"></h2>
+          <p data-text="sections.steps.subtitle"></p>
+        </div>
+        <div class="step-grid" data-steps="workflow.steps"></div>
+      </section>
+
+      <section class="section section--showcase">
+        <div class="photo-frame" data-image="context"></div>
+        <div class="card-grid" data-cards="highlights"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 data-text="sections.proof.title"></h2>
+          <p data-text="sections.proof.subtitle"></p>
+        </div>
+        <div class="stat-grid" data-stats="stats"></div>
+      </section>
+    </template>
+
+    <template id="layout-psicologo">
+      <section class="hero hero--center">
+        <div class="hero-content">
+          <p class="eyebrow" data-text="hero.eyebrow"></p>
+          <h1 data-text="hero.title"></h1>
+          <p class="hero-subtitle" data-text="hero.subtitle"></p>
+          <div class="hero-ctas">
+            <a class="cta primary" href="#contacto" data-text="form.button">
+              Solicitar propuesta
+            </a>
+          </div>
+          <div class="hero-proof" data-list="hero.proof"></div>
+        </div>
+        <div class="hero-media hero-media--center">
+          <div class="photo-frame" data-image="profile" data-loading="eager"></div>
+          <div class="hero-svg" data-hero-svg></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 data-text="sections.pillars.title"></h2>
+          <p data-text="sections.pillars.subtitle"></p>
+        </div>
+        <div class="card-grid" data-cards="highlights"></div>
+      </section>
+
+      <section class="section" data-workflow data-flow="orbit" data-steps="workflow.steps">
+        <div class="section-header">
+          <h2 data-text="workflow.title"></h2>
+          <p data-text="workflow.subtitle"></p>
+        </div>
+        <div class="workflow-grid">
+          <div class="workflow-svg" data-workflow-svg></div>
+          <div class="workflow-steps" data-steps="workflow.steps"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <blockquote class="quote" data-quote="quote"></blockquote>
+      </section>
+
+      <section class="section">
+        <div class="stat-grid" data-stats="stats"></div>
+      </section>
+    </template>
+
+    <template id="layout-economista">
+      <section class="hero hero--split">
+        <div class="hero-content">
+          <p class="eyebrow" data-text="hero.eyebrow"></p>
+          <h1 data-text="hero.title"></h1>
+          <p class="hero-subtitle" data-text="hero.subtitle"></p>
+          <div class="hero-ctas">
+            <a class="cta primary" href="#contacto" data-text="form.button">
+              Solicitar propuesta
+            </a>
+          </div>
+          <div class="hero-proof" data-list="hero.proof"></div>
+        </div>
+        <div class="hero-media">
+          <div class="stat-grid" data-stats="stats"></div>
+          <div class="photo-frame" data-image="context" data-loading="eager"></div>
+          <div class="hero-svg" data-hero-svg></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 data-text="sections.diff.title"></h2>
+          <p data-text="sections.diff.subtitle"></p>
+        </div>
+        <div class="card-grid" data-cards="differentials"></div>
+      </section>
+
+      <section class="section" data-workflow data-flow="linear" data-steps="workflow.steps">
+        <div class="section-header">
+          <h2 data-text="workflow.title"></h2>
+          <p data-text="workflow.subtitle"></p>
+        </div>
+        <div class="workflow-grid">
+          <div class="workflow-svg" data-workflow-svg></div>
+          <div class="workflow-steps" data-steps="workflow.steps"></div>
+        </div>
+      </section>
+    </template>
+
+    <template id="layout-contador">
+      <section class="hero hero--split">
+        <div class="hero-content">
+          <p class="eyebrow" data-text="hero.eyebrow"></p>
+          <h1 data-text="hero.title"></h1>
+          <p class="hero-subtitle" data-text="hero.subtitle"></p>
+          <div class="hero-ctas">
+            <a class="cta primary" href="#contacto" data-text="form.button">
+              Solicitar propuesta
+            </a>
+          </div>
+          <div class="hero-proof" data-list="hero.proof"></div>
+        </div>
+        <div class="hero-media">
+          <div class="photo-frame" data-image="profile" data-loading="eager"></div>
+          <div class="tag-row" data-tags="signals"></div>
+          <div class="hero-svg" data-hero-svg></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 data-text="sections.checklist.title"></h2>
+          <p data-text="sections.checklist.subtitle"></p>
+        </div>
+        <div class="card-grid" data-cards="highlights"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 data-text="sections.tiers.title"></h2>
+          <p data-text="sections.tiers.subtitle"></p>
+        </div>
+        <div class="tier-grid" data-tiers="tiers"></div>
+      </section>
+
+      <section class="section" data-workflow data-flow="zigzag" data-steps="workflow.steps">
+        <div class="section-header">
+          <h2 data-text="workflow.title"></h2>
+          <p data-text="workflow.subtitle"></p>
+        </div>
+        <div class="workflow-grid">
+          <div class="workflow-svg" data-workflow-svg></div>
+          <div class="workflow-steps" data-steps="workflow.steps"></div>
+        </div>
+      </section>
+    </template>
+
+    <template id="layout-corredor-inmobiliario">
+      <section class="hero hero--split">
+        <div class="hero-content">
+          <p class="eyebrow" data-text="hero.eyebrow"></p>
+          <h1 data-text="hero.title"></h1>
+          <p class="hero-subtitle" data-text="hero.subtitle"></p>
+          <div class="hero-ctas">
+            <a class="cta primary" href="#contacto" data-text="form.button">
+              Solicitar propuesta
+            </a>
+          </div>
+          <div class="hero-proof" data-list="hero.proof"></div>
+        </div>
+        <div class="hero-media">
+          <div class="photo-frame" data-image="context" data-loading="eager"></div>
+          <div class="card-grid" data-cards="highlights" data-card-class="mini-card"></div>
+          <div class="hero-svg" data-hero-svg></div>
+        </div>
+      </section>
+
+      <section class="section" data-workflow data-flow="linear" data-steps="workflow.steps">
+        <div class="section-header">
+          <h2 data-text="workflow.title"></h2>
+          <p data-text="workflow.subtitle"></p>
+        </div>
+        <div class="workflow-grid">
+          <div class="workflow-svg" data-workflow-svg></div>
+          <div class="workflow-steps" data-steps="workflow.steps"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 data-text="sections.diff.title"></h2>
+          <p data-text="sections.diff.subtitle"></p>
+        </div>
+        <div class="card-grid" data-cards="differentials"></div>
+      </section>
+
+      <section class="section">
+        <div class="stat-grid" data-stats="stats"></div>
+      </section>
+    </template>
+
+    <template id="layout-asistente-virtual">
+      <section class="hero hero--split">
+        <div class="hero-content">
+          <p class="eyebrow" data-text="hero.eyebrow"></p>
+          <h1 data-text="hero.title"></h1>
+          <p class="hero-subtitle" data-text="hero.subtitle"></p>
+          <div class="hero-ctas">
+            <a class="cta primary" href="#contacto" data-text="form.button">
+              Solicitar propuesta
+            </a>
+          </div>
+          <div class="hero-proof" data-list="hero.proof"></div>
+          <div class="tag-row" data-tags="signals"></div>
+        </div>
+        <div class="hero-media">
+          <div class="photo-frame" data-image="profile" data-loading="eager"></div>
+          <div class="photo-frame" data-image="context"></div>
+          <div class="hero-svg" data-hero-svg></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 data-text="sections.diff.title"></h2>
+          <p data-text="sections.diff.subtitle"></p>
+        </div>
+        <div class="card-grid" data-cards="differentials"></div>
+      </section>
+
+      <section class="section" data-workflow data-flow="orbit" data-steps="workflow.steps">
+        <div class="section-header">
+          <h2 data-text="workflow.title"></h2>
+          <p data-text="workflow.subtitle"></p>
+        </div>
+        <div class="workflow-grid">
+          <div class="workflow-svg" data-workflow-svg></div>
+          <div class="workflow-steps" data-steps="workflow.steps"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="stat-grid" data-stats="stats"></div>
+      </section>
+    </template>
+
+    <template id="layout-entrenador-personal">
+      <section class="hero hero--split">
+        <div class="hero-content">
+          <p class="eyebrow" data-text="hero.eyebrow"></p>
+          <h1 data-text="hero.title"></h1>
+          <p class="hero-subtitle" data-text="hero.subtitle"></p>
+          <div class="hero-ctas">
+            <a class="cta primary" href="#contacto" data-text="form.button">
+              Solicitar propuesta
+            </a>
+          </div>
+          <div class="hero-proof" data-list="hero.proof"></div>
+        </div>
+        <div class="hero-media">
+          <div class="photo-frame" data-image="context" data-loading="eager"></div>
+          <div class="mini-card-grid" data-cards="highlights" data-card-class="mini-card"></div>
+          <div class="hero-svg" data-hero-svg></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 data-text="sections.timeline.title"></h2>
+          <p data-text="sections.timeline.subtitle"></p>
+        </div>
+        <div class="timeline" data-steps="workflow.steps" data-step-class="timeline-step"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 data-text="sections.diff.title"></h2>
+          <p data-text="sections.diff.subtitle"></p>
+        </div>
+        <div class="card-grid" data-cards="differentials"></div>
+      </section>
+
+      <section class="section">
+        <div class="stat-grid" data-stats="stats"></div>
+      </section>
+    </template>
+
+    <template id="layout-nutricionista">
+      <section class="hero hero--split">
+        <div class="hero-content">
+          <p class="eyebrow" data-text="hero.eyebrow"></p>
+          <h1 data-text="hero.title"></h1>
+          <p class="hero-subtitle" data-text="hero.subtitle"></p>
+          <div class="hero-ctas">
+            <a class="cta primary" href="#contacto" data-text="form.button">
+              Solicitar propuesta
+            </a>
+          </div>
+          <div class="hero-proof" data-list="hero.proof"></div>
+        </div>
+        <div class="hero-media">
+          <div class="photo-frame" data-image="context" data-loading="eager"></div>
+          <div class="mini-card-grid" data-cards="highlights" data-card-class="mini-card"></div>
+          <div class="hero-svg" data-hero-svg></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 data-text="sections.pillars.title"></h2>
+          <p data-text="sections.pillars.subtitle"></p>
+        </div>
+        <div class="card-grid" data-cards="highlights"></div>
+      </section>
+
+      <section class="section" data-workflow data-flow="zigzag" data-steps="workflow.steps">
+        <div class="section-header">
+          <h2 data-text="workflow.title"></h2>
+          <p data-text="workflow.subtitle"></p>
+        </div>
+        <div class="workflow-grid">
+          <div class="workflow-svg" data-workflow-svg></div>
+          <div class="workflow-steps" data-steps="workflow.steps"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="stat-grid" data-stats="stats"></div>
+      </section>
+    </template>
+
+    <template id="layout-arquitecto">
+      <section class="hero hero--split">
+        <div class="hero-content">
+          <p class="eyebrow" data-text="hero.eyebrow">Arquitectura Premium</p>
+          <h1 data-text="hero.title">Diseño que trasciende el tiempo.</h1>
+          <p class="hero-subtitle" data-text="hero.subtitle">Proyectos con alma, pensados para la vida moderna y la eficiencia absoluta.</p>
+          <div class="hero-ctas">
+            <a class="cta primary" href="#contacto" data-text="form.button">Solicitar propuesta</a>
+            <a class="cta ghost" href="#disruptive">Ver visión</a>
+          </div>
+        </div>
+        <div class="hero-media">
+          <div class="photo-frame" data-image="profile" data-loading="eager"></div>
+          <div class="hero-svg" data-hero-svg></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 data-text="sections.timeline.title"></h2>
+          <p data-text="sections.timeline.subtitle"></p>
+        </div>
+        <div class="timeline" data-steps="workflow.steps" data-step-class="timeline-step"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 data-text="sections.diff.title"></h2>
+          <p data-text="sections.diff.subtitle"></p>
+        </div>
+        <div class="card-grid" data-cards="differentials"></div>
+      </section>
+
+      <section class="section">
+        <div class="stat-grid" data-stats="stats"></div>
+      </section>
+    </template>
+
+    <template id="layout-consultor-marketing">
+      <section class="hero hero--split">
+        <div class="hero-content">
+          <p class="eyebrow" data-text="hero.eyebrow"></p>
+          <h1 data-text="hero.title"></h1>
+          <p class="hero-subtitle" data-text="hero.subtitle"></p>
+          <div class="hero-ctas">
+            <a class="cta primary" href="#contacto" data-text="form.button">
+              Solicitar propuesta
+            </a>
+          </div>
+          <div class="hero-proof" data-list="hero.proof"></div>
+        </div>
+        <div class="hero-media">
+          <div class="photo-frame" data-image="context" data-loading="eager"></div>
+          <div class="tag-row" data-tags="signals"></div>
+          <div class="hero-svg" data-hero-svg></div>
+        </div>
+      </section>
+
+      <section class="section" data-workflow data-flow="linear" data-steps="workflow.steps">
+        <div class="section-header">
+          <h2 data-text="workflow.title"></h2>
+          <p data-text="workflow.subtitle"></p>
+        </div>
+        <div class="workflow-grid">
+          <div class="workflow-svg" data-workflow-svg></div>
+          <div class="workflow-steps" data-steps="workflow.steps"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 data-text="sections.proof.title"></h2>
+          <p data-text="sections.proof.subtitle"></p>
+        </div>
+        <div class="stat-grid" data-stats="stats"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 data-text="sections.diff.title"></h2>
+          <p data-text="sections.diff.subtitle"></p>
+        </div>
+        <div class="card-grid" data-cards="differentials"></div>
+      </section>
+    </template>
+
+    <footer class="footer">
+      <div class="footer-brand">Landing Modular B2B</div>
+      <div class="footer-links">
+        <span class="muted">© 2026 • Demo de alto impacto</span>
+      </div>
+    </footer>
+
+    <div id="floating-cta" class="floating-ctas"></div>
+    <script type="module" src="scripts.js"></script>
+  </body>
+</html>
