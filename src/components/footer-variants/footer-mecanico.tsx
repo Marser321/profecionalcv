@@ -117,7 +117,7 @@ export function FooterMecanico() {
                 <div className="flex items-center gap-8">
                     <div className="flex flex-col items-end">
                         <span className="text-neutral-600 text-[9px] font-bold uppercase tracking-widest">System_Auth</span>
-                        <span className="text-neutral-400 text-[10px] font-black uppercase italic tracking-widest">Antigravity_Elite_Partner</span>
+                        <span className="text-neutral-400 text-[10px] font-black uppercase italic tracking-widest">Socio_Certificado</span>
                     </div>
                     <div className="w-10 h-10 border border-white/10 flex items-center justify-center">
                         <span className="text-white font-black text-xs italic">AV</span>

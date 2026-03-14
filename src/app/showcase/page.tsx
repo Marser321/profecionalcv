@@ -251,7 +251,7 @@ export default function ShowcasePage() {
         <div className="absolute bottom-0 left-0 w-full h-px bg-white/10"></div>
         <div className="container mx-auto px-4 md:px-6 text-center space-y-4">
           <p className="text-neutral-500 text-[10px] font-bold uppercase tracking-[0.4em]">
-            © 2026 Antigravity Professionals • Built for Excellence
+            © 2026 Hub Profesional • Built for Excellence
           </p>
           <div className="flex justify-center gap-6 text-white/20">
             <span className="hover:text-red-500 cursor-pointer transition-colors uppercase text-[8px] font-black tracking-widest">Privacy</span>

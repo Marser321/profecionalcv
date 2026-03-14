@@ -54,7 +54,7 @@ export function ProfessionProvider({ children }: { children: React.ReactNode }) 
             >
                <div className="flex flex-col items-center gap-8">
                   <div className="w-24 h-[1px] bg-black/20 animate-pulse" />
-                  <span className="text-black font-black uppercase tracking-[1.5em] italic text-[10px] text-center ml-[1.5em]">Antigravity_Refining_Reality</span>
+                  <span className="text-black font-black uppercase tracking-[1.5em] italic text-[10px] text-center ml-[1.5em]">Excelencia_En_Movimiento</span>
                   <div className="w-24 h-[1px] bg-black/20 animate-pulse" />
                </div>
             </motion.div>

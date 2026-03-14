@@ -9,7 +9,7 @@ export function DynamicMetadata() {
   useEffect(() => {
     if (typeof document !== 'undefined') {
       // Update Title
-      const baseTitle = "Antigravity Professionals";
+      const baseTitle = "Hub Profesional";
       const professionTitle = `${profession.brandName} | ${profession.label}`;
       document.title = `${professionTitle} — ${baseTitle}`;
 

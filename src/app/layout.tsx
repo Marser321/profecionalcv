@@ -7,7 +7,7 @@ import { ProfessionProvider } from "@/context/profession-context";
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
-  title: 'Antigravity Professionals | Templates Premium',
+  title: 'Hub Profesional | Templates Premium',
   description: 'Galería de plantillas premium para profesionales independientes.',
 };
 

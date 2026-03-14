@@ -117,7 +117,7 @@ export function FooterArquitecto() {
                 <div className="flex items-center gap-8">
                     <div className="flex flex-col items-end text-neutral-600 font-light uppercase italic">
                         <span className="text-[8px] tracking-[0.2em]">Design_Audit</span>
-                        <span className="text-[9px] tracking-[0.4em] text-neutral-500">Antigravity_Elite_Partner</span>
+                        <span className="text-[9px] tracking-[0.4em] text-neutral-500">Socio_Certificado</span>
                     </div>
                     <div className="w-10 h-10 border border-white/5 flex items-center justify-center">
                         <span className="text-white text-[10px] font-light">AV</span>
