@@ -79,7 +79,7 @@ export function WorkGallery() {
               className={`group relative overflow-hidden rounded-[2rem] bg-neutral-900 border border-white/5 cursor-pointer 
                 ${index === 0 || index === 7 ? 'md:col-span-2 md:row-span-2 aspect-square' : 'aspect-[4/5]'}`}
             >
-              <Image unoptimized
+              <Image 
                 src={item.image}
                 alt={item.title}
                 fill
@@ -158,7 +158,7 @@ export function WorkGallery() {
               key={selectedImage}
               className="relative w-full max-w-6xl aspect-video md:aspect-auto md:h-[80vh] rounded-[3rem] overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.8)] border border-white/10"
             >
-               <Image unoptimized
+               <Image 
                 src={gallery[selectedImage].image}
                 alt={gallery[selectedImage].title}
                 fill

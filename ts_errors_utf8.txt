@@ -1,0 +1,2 @@
+﻿src/components/work-gallery.tsx(86,17): error TS17001: JSX elements cannot have multiple attributes with the same name.
+src/components/work-gallery.tsx(165,17): error TS17001: JSX elements cannot have multiple attributes with the same name.
