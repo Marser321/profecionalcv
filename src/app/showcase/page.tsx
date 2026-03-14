@@ -4,7 +4,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
 import { PROFESSIONS, ProfessionId } from '@/lib/constants';
 import { useProfession } from '@/context/profession-context';
-import { ExternalLink, CheckCircle2, ArrowRight, Layout, Zap, Smartphone, MousePointer2 } from 'lucide-react';
+import Image from 'next/image';
+import { ExternalLink, CheckCircle2, ArrowRight, Layout, Zap, Smartphone, MousePointer2, Hammer, Gavel, Heart, Stethoscope, Compass, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 
 // Componente para el fondo de malla animado
@@ -43,6 +44,18 @@ export default function ShowcasePage() {
     { icon: <Smartphone size={24} />, title: "Mobile First", description: "Optimizada para la conversión desde cualquier dispositivo." },
     { icon: <Zap size={24} />, title: "Velocidad Extrema", description: "Next.js 15 para una experiencia de usuario instantánea." },
   ];
+
+  const getProfessionIcon = (id: string) => {
+    switch (id) {
+      case 'mecanico': return <Hammer size={32} />;
+      case 'abogado': return <Gavel size={32} />;
+      case 'psicologo': return <Heart size={32} />;
+      case 'odontologo': return <Stethoscope size={32} />;
+      case 'arquitecto': return <Compass size={32} />;
+      case 'estetica': return <Sparkles size={32} />;
+      default: return <Layout size={32} />;
+    }
+  };
 
   return (
     <div ref={containerRef} className="min-h-screen bg-black text-white selection:bg-red-500/30 relative">
@@ -154,16 +167,30 @@ export default function ShowcasePage() {
                 {/* Visual Depth Overlay */}
                 <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 to-transparent z-0"></div>
 
+                {/* Background Image with Cinematic Hover */}
+                <div className="absolute inset-0 z-0">
+                  <Image 
+                    src={prof.hero.image || (prof.about && prof.about.image) || ''}
+                    alt={prof.label}
+                    fill
+                    className="object-cover opacity-20 group-hover:opacity-40 group-hover:scale-110 transition-all duration-1000 grayscale group-hover:grayscale-0"
+                    unoptimized
+                  />
+                  {/* Custom Depth Overlays */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-700"></div>
+                </div>
+
                 <div className="p-10 space-y-8 relative z-10">
                   <div className="flex justify-between items-start">
                     <div 
-                      className="w-16 h-16 rounded-[24px] flex items-center justify-center bg-white/5 border border-white/10 group-hover:rotate-6 transition-transform duration-500"
+                      className="w-16 h-16 rounded-[24px] flex items-center justify-center bg-white/5 border border-white/10 group-hover:rotate-6 transition-transform duration-500 backdrop-blur-xl shadow-xl shadow-black/50"
                       style={{ color: prof.accent }}
                     >
-                      <Layout size={32} />
+                      {getProfessionIcon(prof.id)}
                     </div>
-                    <div className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[8px] font-black uppercase tracking-widest text-neutral-500">
-                      Standard {i + 1}
+                    <div className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[8px] font-black uppercase tracking-widest text-neutral-400 backdrop-blur-md">
+                      Standard Version
                     </div>
                   </div>
 
@@ -195,13 +222,24 @@ export default function ShowcasePage() {
                   >
                     <motion.div
                       whileTap={{ scale: 0.95 }}
-                      className="inline-flex items-center justify-center w-full px-8 py-5 rounded-2xl bg-white text-black text-sm font-black uppercase tracking-widest hover:bg-red-500 hover:text-white transition-all duration-500 shadow-2xl shadow-black"
+                      className="inline-flex items-center justify-center w-full px-8 py-5 rounded-2xl bg-white text-black text-sm font-black uppercase tracking-widest hover:bg-white transition-all duration-500 shadow-2xl shadow-black relative overflow-hidden group/btn"
+                      style={{ 
+                        backgroundColor: prof.id === 'arquitecto' ? '#EAB308' : prof.accent,
+                        color: 'white'
+                      }}
                     >
-                      <span>Previsualizar</span>
-                      <ArrowRight size={20} className="ml-3 group-hover:translate-x-2 transition-transform" />
+                      <span className="relative z-10">Previsualizar</span>
+                      <ArrowRight size={20} className="ml-3 group-hover/btn:translate-x-2 transition-transform relative z-10" />
+                      <div className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-20 transition-opacity"></div>
                     </motion.div>
                   </Link>
                 </div>
+                
+                {/* Accent Border Bottom */}
+                <div 
+                  className="absolute bottom-0 left-0 h-1 w-0 group-hover:w-full transition-all duration-700 z-20"
+                  style={{ backgroundColor: prof.accent }}
+                />
               </motion.div>
             ))}
           </div>
