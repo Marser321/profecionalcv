@@ -7,8 +7,11 @@ import { motion, Variants } from 'framer-motion';
 import Image from 'next/image';
 import { AnimatedCounter } from '@/components/ui/animated-counter';
 
+import { HeroGem } from '@/components/ui/hero-gem';
+
 export function HeroPsicologo() {
   const { profession } = useProfession();
+  const gems = profession.hero.gems || [];
 
   // Animaciones muy suaves y prolongadas (Sensación de "respiración")
   const fadeUpSlow: Variants = {
@@ -42,23 +45,33 @@ export function HeroPsicologo() {
   };
 
   return (
-    <section className="relative min-h-screen py-32 overflow-hidden flex items-center justify-center bg-background">
-      {/* Background decoration: Orbes de respiración (Zen vibe) */}
-      <motion.div 
-        variants={breathingAnimation} 
-        initial="initial" 
-        animate="animate" 
-        className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-primary/10 rounded-[40%_60%_70%_30%_/_40%_50%_60%_50%] blur-[120px] pointer-events-none" 
-        style={{ mixBlendMode: 'screen' }}
-      />
-      
-      <motion.div 
-        variants={breathingAnimation} 
-        initial="initial" 
-        animate="animate" 
-        transition={{ delay: 2, duration: 10, repeat: Infinity }}
-        className="absolute bottom-10 right-10 w-[800px] h-[800px] bg-white/5 rounded-[60%_40%_30%_70%_/_60%_30%_70%_40%] blur-[150px] pointer-events-none" 
-      />
+    <section className="relative min-h-screen py-32 overflow-hidden flex items-center justify-center bg-[#050805]">
+      {/* Background decoration: Zen Mesh & Organic Grids */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <motion.div 
+          variants={breathingAnimation} 
+          initial="initial" 
+          animate="animate" 
+          className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[140px] opacity-[0.12]"
+          style={{ backgroundColor: profession.accent }}
+        />
+        <motion.div 
+          variants={breathingAnimation} 
+          initial="initial" 
+          animate="animate" 
+          transition={{ delay: 3 }}
+          className="absolute bottom-[-15%] right-[-10%] w-[60%] h-[60%] rounded-full blur-[160px] opacity-[0.08]"
+          style={{ backgroundColor: profession.accent }}
+        />
+        
+        {/* Grilla orgánica sutil */}
+        <div className="absolute inset-0 opacity-[0.02]" 
+          style={{ 
+            backgroundImage: `radial-gradient(circle, ${profession.accent} 1px, transparent 1px)`,
+            backgroundSize: '100px 100px' 
+          }} 
+        />
+      </div>
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -126,17 +139,21 @@ export function HeroPsicologo() {
               {/* Overlay sutil para oscurecer */}
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/60 z-10" />
               
-              <Image 
-                src={`/hero/${profession.id}.png`} 
+              <Image unoptimized 
+                src={profession.hero.image || `/hero/${profession.id}.png`} 
                 alt={`Pantalla de gestión de ${profession.label}`}
-                fill
-                className="object-cover opacity-90 transition-transform duration-[20s] ease-linear hover:scale-110"
+                fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover opacity-90 transition-transform duration-[20s] ease-linear hover:scale-110"
                 priority
               />
 
+              {/* Inyección de Abundancia: Floating Gems */}
+              {gems.map((gem, i) => (
+                <HeroGem key={i} {...gem} delay={i * 0.3} />
+              ))}
+
               {/* Botón flotante simulando una interacción amigable en la app */}
-              <div className="absolute bottom-10 left-10 right-10 z-20 flex justify-between items-end">
-                <div className="glass-card bg-black/40 backdrop-blur-xl border border-white/10 p-5 rounded-2xl max-w-[250px]">
+              <div className="absolute bottom-10 left-10 right-10 z-20">
+                <div className="glass-card bg-black/40 backdrop-blur-xl border border-white/10 p-5 rounded-2xl max-w-[250px] mx-auto">
                   <div className="flex gap-3 items-center mb-2">
                     <div className="w-2 h-2 rounded-full bg-primary" />
                     <span className="text-xs text-white/70 uppercase tracking-wider font-semibold">Sesión Próxima</span>

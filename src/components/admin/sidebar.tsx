@@ -20,7 +20,7 @@ export function Sidebar() {
     <aside className="w-64 bg-[#0a0a0a] border-r border-white/5 flex flex-col">
       <div className="p-8 border-b border-white/5">
         <h1 className="text-xl font-black italic uppercase tracking-tighter">
-          AutoHub <span className="text-red-600">Admin</span>
+          Gestión <span className="text-red-600">Taller</span>
         </h1>
       </div>
 

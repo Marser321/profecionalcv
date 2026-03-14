@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { PROFESSIONS, ProfessionId, DEFAULT_PROFESSION } from '@/lib/constants';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface ProfessionContextType {
   professionId: ProfessionId;
@@ -13,22 +14,52 @@ const ProfessionContext = createContext<ProfessionContextType | undefined>(undef
 
 export function ProfessionProvider({ children }: { children: React.ReactNode }) {
   const [professionId, setProfessionId] = useState<ProfessionId>(DEFAULT_PROFESSION);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   // Efecto para actualizar el body class o variables si es necesario
   useEffect(() => {
     const prof = PROFESSIONS[professionId];
     document.documentElement.style.setProperty('--primary', hexToHSL(prof.accent));
     document.documentElement.style.setProperty('--background', hexToHSL(prof.bg));
-    document.documentElement.style.setProperty('--card', hexToHSL(prof.bg)); // Mantenemos coherencia
+    document.documentElement.style.setProperty('--card', hexToHSL(prof.bg));
   }, [professionId]);
+
+  const handleSetProfession = (id: ProfessionId) => {
+    if (id === professionId) return;
+    setIsTransitioning(true);
+    
+    // Curtain animation timing
+    setTimeout(() => {
+      setProfessionId(id);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(() => setIsTransitioning(false), 600);
+    }, 600);
+  };
 
   return (
     <ProfessionContext.Provider value={{ 
       professionId, 
-      setProfessionId, 
+      setProfessionId: handleSetProfession, 
       profession: PROFESSIONS[professionId] 
     }}>
-      <div className="dark min-h-screen bg-background text-foreground transition-colors duration-500">
+      <div className="dark min-h-screen bg-background text-foreground transition-colors duration-700 relative noise-bg overflow-x-hidden">
+        <AnimatePresence>
+          {isTransitioning && (
+            <motion.div 
+              initial={{ x: '-100%' }}
+              animate={{ x: '0%' }}
+              exit={{ x: '100%' }}
+              transition={{ duration: 0.8, ease: [0.87, 0, 0.13, 1] }}
+              className="fixed inset-0 z-[9999] bg-white flex items-center justify-center p-10"
+            >
+               <div className="flex flex-col items-center gap-8">
+                  <div className="w-24 h-[1px] bg-black/20 animate-pulse" />
+                  <span className="text-black font-black uppercase tracking-[1.5em] italic text-[10px] text-center ml-[1.5em]">Antigravity_Refining_Reality</span>
+                  <div className="w-24 h-[1px] bg-black/20 animate-pulse" />
+               </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
         {children}
       </div>
     </ProfessionContext.Provider>

@@ -43,6 +43,13 @@ export function WorkEstetica() {
         style={{ backgroundColor: 'rgba(147, 51, 234, 0.05)' }}
       />
 
+      {/* Watermark Gigante */}
+      <div className="absolute -left-10 top-1/2 opacity-[0.015] select-none pointer-events-none">
+        <h2 className="text-[25rem] font-serif italic uppercase leading-none text-white origin-center -rotate-90">
+          GLOW
+        </h2>
+      </div>
+
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-32 space-y-8">
           <motion.div 

@@ -7,8 +7,11 @@ import { motion, Variants } from 'framer-motion';
 import Image from 'next/image';
 import { AnimatedCounter } from '@/components/ui/animated-counter';
 
+import { HeroGem } from '@/components/ui/hero-gem';
+
 export function HeroArquitecto() {
   const { profession } = useProfession();
+  const gems = profession.hero.gems || [];
 
   const fadeUp: Variants = {
     hidden: { opacity: 0, y: 30 },
@@ -35,9 +38,20 @@ export function HeroArquitecto() {
 
   return (
     <section className="relative min-h-[110vh] flex items-center pt-32 pb-20 overflow-hidden bg-[#0a0a09]">
-      {/* Background Architectural Grid & Subtle Gold Glow */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgNDBoNDBWMEgwem0zOS0xdjM5SDFWMWgzOHoiIGZpbGw9InJnYmEoMjE4LDE2NSwzMiwwLjA0KSIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+')] opacity-60 pointer-events-none" />
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[180px] pointer-events-none" />
+      {/* Background Architectural Grid & Mesh Glow */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div 
+          className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] opacity-[0.1]"
+          style={{ backgroundColor: profession.accent }}
+        />
+        <div 
+          className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full blur-[180px] opacity-[0.05]"
+          style={{ backgroundColor: profession.accent }}
+        />
+        
+        {/* Grilla Arquitectónica de base */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgNDBoNDBWMEgwem0zOS0xdjM5SDFWMWgzOHoiIGZpbGw9InJnYmEoMjE4LDE2NSwzMiwwLjA0KSIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+')] opacity-40" />
+      </div>
       
       {/* Líneas divisorias estéticas (Plomada/Nivel) */}
       <div className="absolute left-[10%] top-0 bottom-0 w-[1px] bg-primary/10 pointer-events-none" />
@@ -101,15 +115,19 @@ export function HeroArquitecto() {
                   animate="animate"
                   className="absolute inset-[-10%] w-[120%] h-[120%]"
                 >
-                  <Image 
-                    src={`/hero/${profession.id}.png`} 
+                  <Image unoptimized 
+                    src={profession.hero.image || `/hero/${profession.id}.png`} 
                     alt={`Render Mágnum de ${profession.label}`}
-                    fill
-                    className="object-cover opacity-80 mix-blend-screen scale-100 filter contrast-125 grayscale-[20%]"
+                    fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover opacity-80 mix-blend-screen scale-100 filter contrast-125 grayscale-[20%]"
                     priority
                   />
                   {/* Overlay gradiente arquitectónico */}
                   <div className="absolute inset-0 bg-gradient-to-tr from-black/80 via-transparent to-primary/10" />
+
+                  {/* Inyección de Abundancia: Floating Gems */}
+                  {gems.map((gem, i) => (
+                    <HeroGem key={i} {...gem} delay={i * 0.2} />
+                  ))}
                 </motion.div>
 
                 {/* Sellos / Marcas de Agua Arquitectónicas */}

@@ -37,6 +37,13 @@ export function WorkOdontologo() {
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#00f2ff]/30 to-transparent" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#00f2ff]/5 blur-[150px] rounded-full pointer-events-none" />
 
+      {/* Watermark Gigante */}
+      <div className="absolute -right-20 bottom-0 opacity-[0.02] select-none pointer-events-none">
+        <h2 className="text-[25rem] font-black italic uppercase leading-none text-white origin-bottom-right rotate-90 -translate-y-32">
+          SMILE
+        </h2>
+      </div>
+
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col items-center text-center mb-24 space-y-6">
           <motion.div 

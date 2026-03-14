@@ -7,8 +7,11 @@ import { motion, Variants, useMotionValue, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import { AnimatedCounter } from '@/components/ui/animated-counter';
 
+import { HeroGem } from '@/components/ui/hero-gem';
+
 export function HeroMecanico() {
   const { profession } = useProfession();
+  const gems = profession.hero.gems || [];
 
   // Físicas 3D para la imagen del Hero
   const x = useMotionValue(0);
@@ -47,10 +50,24 @@ export function HeroMecanico() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden">
-      {/* Background decoration: Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
+    <section className="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden bg-black">
+      {/* Background decoration: Ambient Mesh & Grids */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div 
+          className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full blur-[120px] opacity-20 animate-pulse"
+          style={{ backgroundColor: profession.accent }}
+        />
+        <div 
+          className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] opacity-10"
+          style={{ backgroundColor: profession.accent }}
+        />
+        <div className="absolute inset-0 opacity-[0.03]" 
+          style={{ 
+            backgroundImage: `linear-gradient(to right, ${profession.accent} 1px, transparent 1px), linear-gradient(to bottom, ${profession.accent} 1px, transparent 1px)`,
+            backgroundSize: '40px 40px' 
+          }} 
+        />
+      </div>
       
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-12 gap-8 items-center">
@@ -117,12 +134,16 @@ export function HeroMecanico() {
                     {/* Glow ambiental que reacciona al mouse */}
                     <div className="absolute -right-20 -top-20 w-64 h-64 bg-primary/20 rounded-full blur-3xl group-hover:bg-primary/40 transition-all duration-700" />
                     
-                    <Image 
-                      src={`/hero/${profession.id}.png`} 
+                    <Image unoptimized 
+                      src={profession.hero.image || `/hero/${profession.id}.png`} 
                       alt={`Dashboard de ${profession.label}`}
-                      fill
-                      className="object-cover opacity-90 mix-blend-screen scale-100 group-hover:scale-105 transition-transform duration-[1500ms] ease-out pointer-events-none"
+                      fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover opacity-90 mix-blend-screen scale-100 group-hover:scale-105 transition-transform duration-[1500ms] ease-out pointer-events-none"
                     />
+
+                    {/* Fragmentación de UI: Floating Gems */}
+                    {gems.map((gem, i) => (
+                      <HeroGem key={i} {...gem} delay={i * 0.2} />
+                    ))}
 
                     {/* Gradient Overlay for blending */}
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />

@@ -6,16 +6,22 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { insforge } from '@/lib/insforge';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export function BookingPsicologo() {
   const { profession } = useProfession();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [step, setStep] = useState(1);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (step < 2) {
+        setStep(2);
+        return;
+    }
+
     setLoading(true);
     setError(null);
 
@@ -50,134 +56,189 @@ export function BookingPsicologo() {
 
   if (success) {
     return (
-      <section className="py-32 bg-[#080a09] min-h-[600px] flex items-center justify-center relative overflow-hidden">
-        {/* Glow de éxito */}
-        <div className="absolute inset-0 bg-emerald-500/5 blur-[120px] rounded-full opacity-30" />
+      <section className="py-32 bg-[#080a09] min-h-[700px] flex items-center justify-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-emerald-500/[0.03] blur-[150px] rounded-full opacity-30 animate-pulse" />
         
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="max-w-md w-full p-12 bg-white/[0.02] border border-emerald-500/10 text-center space-y-8 rounded-[3rem] backdrop-blur-xl relative z-10"
+          className="max-w-xl w-full p-20 bg-white/[0.02] border border-emerald-500/10 text-center space-y-10 rounded-[4rem] backdrop-blur-3xl relative z-10 shadow-[0_50px_100px_rgba(0,0,0,0.3)]"
         >
-          <div className="w-24 h-24 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_30px_rgba(50,215,75,0.1)]">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+          <div className="w-28 h-28 bg-emerald-500/10 text-emerald-400 border border-emerald-400/20 rounded-full flex items-center justify-center mx-auto mb-8 shadow-[0_0_50px_rgba(52,211,153,0.1)]">
+              <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
           </div>
-          <h2 className="text-3xl font-light text-white tracking-tight">Tu espacio está listo</h2>
-          <p className="text-neutral-400 font-serif italic text-lg leading-relaxed">
-            "Hemos recibido tu solicitud. Pronto daremos el primer paso juntos hacia tu bienestar."
-          </p>
-          <Button onClick={() => setSuccess(false)} variant="ghost" className="text-emerald-400 hover:bg-emerald-500/5 hover:text-emerald-300 rounded-full px-8 h-12 transition-all duration-500">Volver a agendar</Button>
+          <div className="space-y-4">
+            <h2 className="text-4xl font-light text-white tracking-tight font-serif italic">Tu espacio te espera</h2>
+            <p className="text-neutral-500 font-serif italic text-lg leading-relaxed max-w-sm mx-auto">
+              "Hemos recibido tu intención de encuentro. Pronto coordinaremos el inicio de este viaje hacia tu equilibrio interior."
+            </p>
+          </div>
+          
+          <Button 
+            onClick={() => { setSuccess(false); setStep(1); }} 
+            className="text-emerald-400 hover:text-emerald-300 bg-emerald-500/5 hover:bg-emerald-500/10 rounded-full px-12 h-16 transition-all duration-700 font-serif italic text-lg border border-emerald-500/20"
+          >
+            Volver a respirar
+          </Button>
         </motion.div>
       </section>
     );
   }
 
   return (
-    <section className="py-32 bg-[#080a09] relative overflow-hidden" id="reservar">
-      {/* Background Decor - Formas orgánicas */}
-      <div className="absolute -top-24 -left-24 w-[400px] h-[400px] bg-emerald-500/5 blur-[100px] rounded-full pointer-events-none" />
-      <div className="absolute -bottom-24 -right-24 w-[500px] h-[500px] bg-green-500/5 blur-[120px] rounded-full pointer-events-none" />
+    <section className="py-32 bg-[#080a09] relative overflow-hidden font-serif" id="reservar">
+      {/* Background Decor - Orgánico */}
+      <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute -bottom-40 -right-40 w-[800px] h-[800px] bg-emerald-600/[0.03] blur-[150px] rounded-full pointer-events-none" />
       
-      <div className="container mx-auto px-6 max-w-6xl relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div 
-               initial={{ opacity: 0, scale: 0.98 }}
-               whileInView={{ opacity: 1, scale: 1 }}
-               viewport={{ once: true }}
-               className="space-y-12 bg-white/[0.01] p-12 rounded-[4rem] border border-white/5 backdrop-blur-sm"
-            >
-                <div className="space-y-6">
-                  <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-500/5 border border-emerald-500/10 rounded-full">
-                     <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-                     <span className="text-emerald-400/80 text-[10px] uppercase font-bold tracking-widest">Acompañamiento Humano</span>
-                  </div>
-                  <h2 className="text-5xl md:text-7xl font-light text-white leading-tight tracking-tight">
-                    Inicia tu <br />
-                    <span className="font-serif italic text-emerald-400">Transformación</span>
-                  </h2>
-                  <p className="text-xl text-neutral-400 font-light leading-relaxed font-serif italic max-w-md">
-                     "El primer paso es el más valiente. Reserva un momento para ti, en un entorno de escucha y respeto."
-                  </p>
-                </div>
-                
-                <div className="space-y-8">
-                    {[
-                      { t: "Espacio de Escucha", d: "Atención centrada en tus tiempos y necesidades emocionales." },
-                      { t: "Vínculo de Seguridad", d: "Confidencialidad absoluta y un entorno libre de juicios." },
-                      { t: "Gestión Simple", d: "Confirmamos tu turno de forma clara y sin presiones." }
-                    ].map((feature, idx) => (
-                      <div key={idx} className="flex items-start gap-6 group">
-                          <div className="w-10 h-10 rounded-full bg-emerald-500/5 border border-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/10 group-hover:border-emerald-500/20 transition-all duration-500">
-                              <svg className="w-5 h-5 text-emerald-500/50 group-hover:text-emerald-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
-                              </svg>
-                          </div>
-                          <div>
-                            <span className="block text-white font-medium text-lg tracking-tight">{feature.t}</span>
-                            <span className="text-neutral-500 text-sm font-light italic font-serif">{feature.d}</span>
-                          </div>
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+        <div className="grid lg:grid-cols-12 gap-24 items-center">
+            {/* Legend Side */}
+            <div className="lg:col-span-5 space-y-16">
+                <motion.div 
+                   initial={{ opacity: 0, y: 20 }}
+                   whileInView={{ opacity: 1, y: 0 }}
+                   viewport={{ once: true }}
+                   className="space-y-12"
+                >
+                    <div className="space-y-8">
+                      <div className="flex items-center gap-4">
+                         <div className="w-12 h-12 rounded-full border border-emerald-500/20 flex items-center justify-center">
+                            <div className="w-2 h-2 bg-emerald-500 rounded-full" />
+                         </div>
+                         <span className="text-emerald-400/60 uppercase font-serif tracking-[0.4em] text-[10px] italic">Presencia Consciente</span>
                       </div>
+                      <h2 className="text-6xl md:text-8xl font-light text-white leading-[1] tracking-tight">
+                        Inicia tu <br />
+                        <span className="italic text-emerald-400">Reencuentro</span>
+                      </h2>
+                      <p className="text-2xl text-neutral-500 font-light leading-relaxed italic max-w-md">
+                         "Toda gran transformación comienza con la decisión silenciosa de ser escuchado."
+                      </p>
+                    </div>
+                </motion.div>
+                
+                <div className="space-y-12">
+                    {[
+                      { t: "Vínculo de Confianza", d: "Un espacio diseñado para que puedas ser tú, sin máscaras." },
+                      { t: "Gestión Armonizada", d: "Coordinamos tu primer encuentro con total discreción y fluidez." }
+                    ].map((feature, idx) => (
+                      <motion.div 
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: idx * 0.1 }}
+                        key={idx} 
+                        className="flex gap-8 group"
+                      >
+                          <div className="w-16 h-16 rounded-[2rem] bg-emerald-500/5 border border-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/10 transition-all duration-1000">
+                              <div className="w-1 h-1 bg-emerald-500 rounded-full" />
+                          </div>
+                          <div className="space-y-2">
+                             <span className="block text-white font-light text-2xl tracking-tight italic opacity-90 group-hover:opacity-100 transition-opacity">{feature.t}</span>
+                             <span className="text-neutral-500 text-lg font-light italic leading-relaxed block">{feature.d}</span>
+                          </div>
+                      </motion.div>
                     ))}
                 </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="relative"
-            >
-                <div className="absolute inset-0 bg-emerald-500/5 blur-[100px] rounded-full pointer-events-none scale-90" />
-                <Card className="rounded-[3rem] bg-white/[0.02] border-white/5 backdrop-blur-2xl shadow-2xl relative z-10 overflow-hidden">
-                    <CardHeader className="p-12 text-center border-b border-white/5">
-                        <CardTitle className="text-2xl font-light text-white tracking-wide">Agendar Encuentro</CardTitle>
-                        <CardDescription className="text-emerald-500/60 font-serif italic mt-2">Modalidad: <span className="text-emerald-400">{profession.label}</span></CardDescription>
-                    </CardHeader>
-                    <CardContent className="p-12">
-                        <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-10">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                                <div className="space-y-4">
-                                    <label className="text-[10px] font-bold text-neutral-600 uppercase tracking-[0.3em] font-sans ml-4">Tu Nombre</label>
-                                    <Input name="name" placeholder="Ej: Sofía Martínez" className="bg-white/[0.03] border-white/5 rounded-full text-white h-14 focus-visible:ring-emerald-500/30 focus-visible:border-emerald-500/50 text-lg transition-all duration-500 px-8" required />
-                                </div>
-                                
-                                <div className="space-y-4">
-                                    <label className="text-[10px] font-bold text-neutral-600 uppercase tracking-[0.3em] font-sans ml-4">Medio de Contacto</label>
-                                    <Input name="contact" placeholder="+598 9X XXX XXX" className="bg-white/[0.03] border-white/5 rounded-full text-white h-14 focus-visible:ring-emerald-500/30 focus-visible:border-emerald-500/50 text-lg transition-all duration-500 px-8" required />
-                                </div>
-                            </div>
-                            
-                            <div className="grid grid-cols-2 gap-10">
-                                <div className="space-y-4">
-                                    <label className="text-[10px] font-bold text-neutral-600 uppercase tracking-[0.3em] font-sans ml-4">Día de Preferencia</label>
-                                    <Input name="date" type="date" className="bg-white/[0.03] border-white/5 rounded-full text-white h-14 focus-visible:ring-emerald-500/30 focus-visible:border-emerald-500/50 text-lg transition-all duration-500 px-8 [color-scheme:dark]" required />
-                                </div>
-                                <div className="space-y-4">
-                                    <label className="text-[10px] font-bold text-neutral-600 uppercase tracking-[0.3em] font-sans ml-4">Horario Sugerido</label>
-                                    <Input name="time" type="time" className="bg-white/[0.03] border-white/5 rounded-full text-white h-14 focus-visible:ring-emerald-500/30 focus-visible:border-emerald-500/50 text-lg transition-all duration-500 px-8 [color-scheme:dark]" required />
-                                </div>
-                            </div>
+            {/* Form Side */}
+            <div className="lg:col-span-7">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    className="relative group"
+                >
+                    <div className="absolute -inset-10 bg-emerald-500/5 blur-[80px] rounded-full opacity-40 group-hover:opacity-60 transition-opacity pointer-events-none" />
+                    <Card className="rounded-[4rem] bg-white/[0.01] border-white/5 backdrop-blur-3xl shadow-[0_60px_120px_-20px_rgba(0,0,0,0.5)] relative z-10 overflow-hidden">
+                        {/* Soft Progress Line */}
+                        <div className="absolute top-0 left-0 w-full h-[1px] bg-white/5 overflow-hidden">
+                            <motion.div 
+                                animate={{ x: step === 1 ? '-50%' : '0%' }}
+                                className="w-[200%] h-full bg-gradient-to-r from-transparent via-emerald-400 to-transparent opacity-40" 
+                            />
+                        </div>
 
-                            {error && (
-                                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-5 bg-red-500/5 border border-red-500/10 text-red-400 text-sm font-serif italic text-center rounded-2xl">
-                                    {error}
-                                </motion.div>
-                            )}
-
-                            <div className="pt-6">
-                              <Button 
-                                  type="submit" 
-                                  className="w-full h-16 text-lg font-medium bg-emerald-500/90 text-white hover:bg-emerald-400 transition-all duration-1000 rounded-full shadow-lg shadow-emerald-500/20"
-                                  disabled={loading}
-                              >
-                                  {loading ? 'Preparando Espacio...' : 'Confirmar Primer Paso'}
-                              </Button>
-                              <p className="mt-6 text-center text-[9px] text-neutral-600 uppercase tracking-widest leading-relaxed max-w-xs mx-auto">Tus datos están protegidos por el código de ética profesional.</p>
+                        <CardHeader className="p-16 pb-8 text-center border-b border-white/5">
+                            <div className="flex flex-col items-center gap-4">
+                               <CardTitle className="text-3xl font-light text-white tracking-wide italic">Abrir el Espacio</CardTitle>
+                               <div className="px-4 py-1 bg-emerald-500/5 border border-emerald-500/20 rounded-full">
+                                  <span className="text-[10px] font-serif uppercase tracking-[0.4em] text-emerald-400 opacity-60">Instancia_0{step} de 02</span>
+                               </div>
                             </div>
-                        </form>
-                    </CardContent>
-                </Card>
-            </motion.div>
+                        </CardHeader>
+                        <CardContent className="p-16">
+                            <form onSubmit={handleSubmit} className="space-y-12">
+                                <AnimatePresence mode="wait">
+                                    {step === 1 ? (
+                                        <motion.div 
+                                            key="step1"
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -10 }}
+                                            className="grid grid-cols-1 gap-12"
+                                        >
+                                            <div className="space-y-6">
+                                                <label className="text-[10px] font-serif uppercase tracking-[0.4em] text-neutral-600 ml-6">¿Cómo deseas que te llamemos?</label>
+                                                <Input name="name" placeholder="Tu nombre o pseudónimo..." className="bg-white/[0.02] border-white/5 rounded-full text-white h-20 focus-visible:ring-emerald-500/10 focus-visible:border-emerald-500/30 text-2xl font-light italic transition-all px-10 placeholder:opacity-20" required />
+                                            </div>
+                                            
+                                            <div className="space-y-6">
+                                                <label className="text-[10px] font-serif uppercase tracking-[0.4em] text-neutral-600 ml-6">Tu medio de contacto preferido</label>
+                                                <Input name="contact" placeholder="Email o Teléfono para coordinar..." className="bg-white/[0.02] border-white/5 rounded-full text-white h-20 focus-visible:ring-emerald-500/10 focus-visible:border-emerald-500/30 text-2xl font-light italic transition-all px-10 placeholder:opacity-20" required />
+                                            </div>
+                                        </motion.div>
+                                    ) : (
+                                        <motion.div 
+                                            key="step2"
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -10 }}
+                                            className="grid grid-cols-1 md:grid-cols-2 gap-12"
+                                        >
+                                            <div className="space-y-6">
+                                                <label className="text-[10px] font-serif uppercase tracking-[0.4em] text-neutral-600 ml-6">Un día posible</label>
+                                                <Input name="date" type="date" className="bg-white/[0.02] border-white/5 rounded-full text-white h-20 focus-visible:ring-emerald-500/10 focus-visible:border-emerald-500/30 text-xl font-light italic transition-all px-10 [color-scheme:dark]" required />
+                                            </div>
+                                            <div className="space-y-6">
+                                                <label className="text-[10px] font-serif uppercase tracking-[0.4em] text-neutral-600 ml-6">Un horario sugerido</label>
+                                                <Input name="time" type="time" className="bg-white/[0.02] border-white/5 rounded-full text-white h-20 focus-visible:ring-emerald-500/10 focus-visible:border-emerald-500/30 text-xl font-light italic transition-all px-10 [color-scheme:dark]" required />
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+
+                                {error && (
+                                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-6 bg-red-500/5 border border-red-500/10 text-red-400 text-sm italic text-center rounded-3xl">
+                                        {error}
+                                    </motion.div>
+                                )}
+
+                                <div className="pt-8 flex flex-col items-center gap-8">
+                                    <Button 
+                                        type="submit" 
+                                        className="w-full h-20 text-xl font-light bg-emerald-500/90 text-white hover:bg-emerald-400 transition-all duration-1000 rounded-full shadow-2xl shadow-emerald-500/20 italic"
+                                        disabled={loading}
+                                    >
+                                        {loading ? 'Preparando el espacio...' : step === 1 ? 'Continuar el proceso →' : 'Confirmar Primer Paso'}
+                                    </Button>
+                                    {step === 2 && (
+                                        <button 
+                                            type="button"
+                                            onClick={() => setStep(1)}
+                                            className="text-neutral-600 hover:text-emerald-400 transition-colors uppercase text-[9px] tracking-[0.5em] italic"
+                                        >
+                                            ← Revisar datos
+                                        </button>
+                                    )}
+                                </div>
+                            </form>
+                        </CardContent>
+                    </Card>
+                </motion.div>
+            </div>
         </div>
       </div>
     </section>

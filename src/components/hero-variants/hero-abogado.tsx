@@ -6,9 +6,13 @@ import { Button } from '@/components/ui/button';
 import { motion, useScroll, useTransform, Variants } from 'framer-motion';
 import Image from 'next/image';
 import { AnimatedCounter } from '@/components/ui/animated-counter';
+import * as LucideIcons from 'lucide-react';
+
+import { HeroGem } from '@/components/ui/hero-gem';
 
 export function HeroAbogado() {
   const { profession } = useProfession();
+  const gems = profession.hero.gems || [];
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Parallax con Scroll
@@ -27,23 +31,25 @@ export function HeroAbogado() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
   };
 
-  const floatAnimation: Variants = {
-    initial: { y: 0 },
-    animate: {
-      y: [-10, 10, -10],
-      transition: {
-        duration: 6,
-        ease: "easeInOut",
-        repeat: Infinity,
-      }
-    }
-  };
-
   return (
-    <section ref={containerRef} className="relative min-h-[120vh] pt-32 pb-20 overflow-hidden bg-background">
-      {/* Luces y sombras elegantes (Estilo Legal) */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-primary/10 rounded-full blur-[200px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-full blur-[100px] pointer-events-none" />
+    <section ref={containerRef} className="relative min-h-[120vh] pt-32 pb-20 overflow-hidden bg-[#050505]">
+      {/* Fondos dinámicos: Mesh Gradient Legal */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div 
+          className="absolute top-[-10%] left-[-20%] w-[60%] h-[50%] rounded-full blur-[150px] opacity-[0.08]"
+          style={{ backgroundColor: profession.accent }}
+        />
+        <div 
+          className="absolute bottom-[-5%] right-[-10%] w-[40%] h-[40%] rounded-full blur-[120px] opacity-[0.05]"
+          style={{ backgroundColor: profession.accent }}
+        />
+        <div className="absolute inset-0 opacity-[0.02]" 
+          style={{ 
+            backgroundImage: `linear-gradient(to right, ${profession.accent} 1px, transparent 1px), linear-gradient(to bottom, ${profession.accent} 1px, transparent 1px)`,
+            backgroundSize: '60px 60px' 
+          }} 
+        />
+      </div>
 
       <div className="container mx-auto px-6 relative z-10 flex flex-col items-center">
         
@@ -85,48 +91,40 @@ export function HeroAbogado() {
             className="relative w-full aspect-[16/9] rounded-[2rem] border border-white/10 glass-card overflow-hidden shadow-2xl shadow-primary/10"
           >
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/90 z-10" />
-            <Image 
-              src={`/hero/${profession.id}.png`} 
+            <Image unoptimized 
+              src={profession.hero.image || `/hero/${profession.id}.png`} 
               alt={`Dashboard Legal de ${profession.label}`}
-              fill
-              className="object-cover opacity-90 scale-100 mix-blend-screen"
+              fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover opacity-90 scale-100 mix-blend-screen"
               priority
             />
+
+            {/* Inyección de Abundancia: Floating Gems */}
+            {gems.map((gem, i) => (
+              <HeroGem key={i} {...gem} delay={i * 0.2} />
+            ))}
           </motion.div>
 
-          {/* Badges Flotantes (Stats) */}
-          <div className="absolute inset-0 pointer-events-none z-20">
-            {profession.stats.map((stat, i) => {
-              // Posicionar aleatoriamente los badges alrededor de la imagen
-              const positions = [
-                "top-10 -left-10 md:-left-20",
-                "bottom-20 -right-10 md:-right-20",
-                "-top-8 right-10 md:right-32",
-              ];
-              
-              return (
-                <motion.div 
-                  key={i}
-                  variants={floatAnimation}
-                  initial="initial"
-                  animate="animate"
-                  transition={{ delay: i * 0.5 }}
-                  className={`absolute ${positions[i % positions.length]} glass-card bg-black/60 backdrop-blur-xl border border-white/10 px-6 py-4 rounded-2xl shadow-xl flex items-center gap-4`}
-                >
-                  <div className="w-12 h-12 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center text-primary">
-                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
+          {/* Estadísticas como Badges de Confianza (Pequeños y técnicos) */}
+          <div className="absolute inset-x-0 -bottom-12 flex justify-center gap-4 pointer-events-none z-20">
+            {profession.stats.map((stat, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 + i * 0.1 }}
+                className="glass-card bg-black/60 backdrop-blur-xl border border-white/10 px-6 py-3 rounded-xl shadow-xl flex items-center gap-3"
+              >
+                <div className="w-8 h-8 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary">
+                  <LucideIcons.Check size={14} />
+                </div>
+                <div>
+                  <div className="text-xl font-black text-white font-mono tracking-tight leading-none">
+                    <AnimatedCounter value={stat.value} />
                   </div>
-                  <div>
-                    <div className="text-2xl font-black text-white font-mono tracking-tight">
-                      <AnimatedCounter value={stat.value} />
-                    </div>
-                    <div className="text-xs text-primary/80 uppercase font-bold tracking-widest">{stat.label}</div>
-                  </div>
-                </motion.div>
-              );
-            })}
+                  <div className="text-[10px] text-primary/70 uppercase font-bold tracking-widest">{stat.label}</div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
 

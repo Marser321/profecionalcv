@@ -38,6 +38,13 @@ export function WorkMecanico() {
       />
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff0000]/20 to-transparent" />
       
+      {/* Watermark Gigante */}
+      <div className="absolute -left-20 bottom-0 opacity-[0.03] select-none pointer-events-none">
+        <h2 className="text-[25rem] font-black uppercase italic leading-none text-white origin-bottom-left rotate-90 translate-x-32">
+          ENGINE
+        </h2>
+      </div>
+
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col lg:flex-row gap-16 items-start">
           

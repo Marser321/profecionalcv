@@ -7,8 +7,11 @@ import { motion, Variants } from 'framer-motion';
 import Image from 'next/image';
 import { AnimatedCounter } from '@/components/ui/animated-counter';
 
+import { HeroGem } from '@/components/ui/hero-gem';
+
 export function HeroEstetica() {
   const { profession } = useProfession();
+  const gems = profession.hero.gems || [];
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -45,24 +48,31 @@ export function HeroEstetica() {
   };
 
   return (
-    <section className="relative min-h-[100vh] flex items-center pt-28 pb-16 overflow-hidden bg-background">
+    <section className="relative min-h-[100vh] flex items-center pt-28 pb-16 overflow-hidden bg-[#0a0508]">
       
-      {/* Background Decorativo: Auras de Luz Premium (Magenta/Rosa) */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {/* Background Decorativo: Sensory Mesh & Glows */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         {mounted && (
           <>
             <motion.div 
               variants={auraFloat1}
               animate="animate"
-              className="absolute top-[10%] left-[20%] w-[600px] h-[600px] bg-primary/20 rounded-full blur-[150px] mix-blend-screen"
+              className="absolute top-[10%] left-[20%] w-[600px] h-[600px] bg-primary/20 rounded-full blur-[150px] mix-blend-screen opacity-[0.15]"
             />
             <motion.div 
               variants={auraFloat2}
               animate="animate"
-              className="absolute bottom-[10%] right-[10%] w-[800px] h-[800px] bg-pink-500/10 rounded-full blur-[180px] mix-blend-screen"
+              className="absolute bottom-[10%] right-[10%] w-[800px] h-[800px] bg-pink-500/10 rounded-full blur-[180px] mix-blend-screen opacity-[0.1]"
             />
           </>
         )}
+        {/* Grilla orgánica suave */}
+        <div className="absolute inset-0 opacity-[0.03]" 
+          style={{ 
+            backgroundImage: `radial-gradient(circle, ${profession.accent} 1px, transparent 1px)`,
+            backgroundSize: '120px 120px' 
+          }} 
+        />
       </div>
       
       <div className="container mx-auto px-6 relative z-10">
@@ -179,14 +189,18 @@ export function HeroEstetica() {
 
             {/* Imagen Principal Central con borde y brillo sutil */}
             <div className="relative w-[90%] h-[90%] rounded-[3rem] overflow-hidden glass-card border border-white/10 shadow-2xl z-20 group">
-              <Image 
-                src={`/hero/${profession.id}.png`} 
+              <Image unoptimized 
+                src={profession.hero.image || `/hero/${profession.id}.png`} 
                 alt={`Tratamientos Premium - ${profession.label}`}
-                fill
-                className="object-cover transition-transform duration-[10s] group-hover:scale-105 opacity-90"
+                fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover transition-transform duration-[10s] group-hover:scale-105 opacity-90"
                 priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-primary/10 mix-blend-overlay" />
+
+              {/* Inyección de Abundancia: Floating Gems */}
+              {gems.map((gem, i) => (
+                <HeroGem key={i} {...gem} delay={i * 0.2} />
+              ))}
             </div>
 
             {/* Floating Element: Sello de Calidad / Ingrediente */}

@@ -42,7 +42,7 @@ export default function AdminLoginPage() {
             <div className="inline-block px-4 py-1 border border-red-600/30 bg-red-600/5 text-red-600 text-[10px] font-black uppercase tracking-[0.4em] mb-4">
                Restricted Access
             </div>
-            <h1 className="text-5xl font-black italic uppercase tracking-tighter text-white">AutoHub<span className="text-red-600">.</span></h1>
+            <h1 className="text-5xl font-black italic uppercase tracking-tighter text-white">Admin<span className="text-red-600">Sync</span></h1>
             <p className="text-neutral-500 text-sm mt-2 font-medium italic uppercase tracking-widest">Admin Control Center</p>
         </div>
 
@@ -72,6 +72,7 @@ export default function AdminLoginPage() {
                 </div>
               </div>
 
+              {/* ... rest of the form ... */}
               <div className="space-y-2">
                 <label className="text-[10px] font-black uppercase tracking-widest text-neutral-500 ml-1">Contraseña</label>
                 <div className="relative">
@@ -112,8 +113,9 @@ export default function AdminLoginPage() {
         </Card>
 
         <p className="text-center text-[10px] text-neutral-600 font-mono mt-8 uppercase tracking-[0.3em]">
-          Powered by AutoHub Core Engine v1.0.2
+          Powered by Taller Digital Engine v1.0.2
         </p>
+
       </motion.div>
     </div>
   );

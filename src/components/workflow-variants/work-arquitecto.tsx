@@ -41,6 +41,13 @@ export function WorkArquitecto() {
       <div className="absolute top-0 right-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#b87333]/20 to-transparent" />
       <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-[#d4af37]/5 blur-[180px] rounded-full pointer-events-none" />
 
+      {/* Watermark Gigante */}
+      <div className="absolute -right-20 top-1/4 opacity-[0.02] select-none pointer-events-none">
+        <h2 className="text-[25rem] font-light italic uppercase leading-none text-white origin-top-right rotate-90">
+          BUILD
+        </h2>
+      </div>
+
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mb-32 space-y-4">
           <motion.div 

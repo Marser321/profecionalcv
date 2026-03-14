@@ -7,8 +7,11 @@ import { motion, Variants } from 'framer-motion';
 import Image from 'next/image';
 import { AnimatedCounter } from '@/components/ui/animated-counter';
 
+import { HeroGem } from '@/components/ui/hero-gem';
+
 export function HeroOdontologo() {
   const { profession } = useProfession();
+  const gems = profession.hero.gems || [];
 
   // Animaciones de Entrada (Crisp & Clean)
   const fadeLeft: Variants = {
@@ -43,10 +46,26 @@ export function HeroOdontologo() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden bg-background">
-      {/* Luces clínicas limpias (Cyan/Blanco) */}
-      <div className="absolute top-1/4 right-1/4 w-[700px] h-[700px] bg-primary/15 rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] bg-sky-400/10 rounded-full blur-[120px] pointer-events-none" />
+    <section className="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden bg-[#020508]">
+      {/* Background decoration: Clinical Mesh & Tech Grids */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div 
+          className="absolute top-[5%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[140px] opacity-[0.15]"
+          style={{ backgroundColor: profession.accent }}
+        />
+        <div 
+          className="absolute bottom-[-10%] left-[-15%] w-[45%] h-[45%] rounded-full blur-[120px] opacity-[0.08]"
+          style={{ backgroundColor: profession.accent }}
+        />
+        
+        {/* Grilla técnica sutil */}
+        <div className="absolute inset-0 opacity-[0.04]" 
+          style={{ 
+            backgroundImage: `linear-gradient(to right, ${profession.accent} 1px, transparent 1px), linear-gradient(to bottom, ${profession.accent} 1px, transparent 1px)`,
+            backgroundSize: '30px 30px' 
+          }} 
+        />
+      </div>
       
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -116,13 +135,17 @@ export function HeroOdontologo() {
               <div className="absolute inset-0 bg-primary/10 opacity-50 blur-xl mix-blend-screen" />
 
               <div className="relative w-full h-full rounded-[1.5rem] bg-black overflow-hidden border border-white/5">
-                <Image 
-                  src={`/hero/${profession.id}.png`} 
+                <Image unoptimized 
+                  src={profession.hero.image || `/hero/${profession.id}.png`} 
                   alt={`Escáner Dental 3D ${profession.label}`}
-                  fill
-                  className="object-cover opacity-90 transition-transform duration-700 hover:scale-105"
+                  fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover opacity-90 transition-transform duration-700 hover:scale-105"
                   priority
                 />
+
+                {/* Inyección de Abundancia: Floating Gems */}
+                {gems.map((gem, i) => (
+                  <HeroGem key={i} {...gem} delay={i * 0.2} />
+                ))}
 
                 {/* --- EFECTO LÁSER DE ESCANEO --- */}
                 <motion.div 

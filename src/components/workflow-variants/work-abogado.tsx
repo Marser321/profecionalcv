@@ -30,6 +30,13 @@ export function WorkAbogado() {
         style={{ backgroundImage: `linear-gradient(to right, #007AFF 1px, transparent 1px)`, backgroundSize: '20%' }} 
       />
       
+      {/* Watermark Gigante */}
+      <div className="absolute -right-20 top-0 opacity-[0.02] select-none pointer-events-none">
+        <h2 className="text-[25rem] font-serif italic uppercase leading-none text-white origin-top-right rotate-90 translate-y-32">
+          JUSTICE
+        </h2>
+      </div>
+
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center mb-32 space-y-6">
           <motion.p 

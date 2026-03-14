@@ -41,6 +41,13 @@ export function WorkPsicologo() {
         className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-green-500/5 rounded-full blur-[120px] pointer-events-none" 
       />
 
+      {/* Watermark Gigante */}
+      <div className="absolute -left-20 bottom-0 opacity-[0.03] select-none pointer-events-none">
+        <h2 className="text-[25rem] font-serif italic uppercase leading-none text-white origin-bottom-left -rotate-90 translate-y-32">
+          HEAL
+        </h2>
+      </div>
+
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-24 space-y-6">
           <motion.div 

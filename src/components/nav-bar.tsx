@@ -6,18 +6,22 @@ import { PROFESSIONS, ProfessionId } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
+import Link from 'next/link';
+
 export function NavBar() {
-  const { professionId, setProfessionId } = useProfession();
+  const { professionId, setProfessionId, profession } = useProfession();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-background/40 backdrop-blur-2xl border-b border-white/10 transition-colors duration-500">
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary/50 rounded-xl flex items-center justify-center font-bold text-white shadow-lg shadow-primary/20 border border-white/20">
-          AH
-        </div>
-        <span className="font-extrabold tracking-tighter text-2xl hidden sm:inline-block text-white">
-          AutoHub
-        </span>
+        <Link href="/" className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary/50 rounded-xl flex items-center justify-center font-bold text-white shadow-lg shadow-primary/20 border border-white/20 transition-all duration-500">
+            {profession.shortName}
+          </div>
+          <span className="font-extrabold tracking-tighter text-2xl hidden sm:inline-block text-white transition-all duration-500">
+            {profession.brandName}
+          </span>
+        </Link>
       </div>
 
       <nav className="flex items-center gap-1 overflow-x-auto no-scrollbar max-w-[50%] sm:max-w-none p-1 bg-white/5 border border-white/10 rounded-full backdrop-blur-md">
@@ -37,7 +41,12 @@ export function NavBar() {
         ))}
       </nav>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 sm:gap-4">
+        <Link href="/showcase" className="hidden lg:flex">
+          <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-white hover:bg-white/5 rounded-full px-6 flex items-center gap-2">
+            Galería
+          </Button>
+        </Link>
         <Button variant="ghost" size="sm" className="hidden md:flex text-muted-foreground hover:text-white hover:bg-white/5 rounded-full px-6">
           Ingresar
         </Button>
